@@ -437,10 +437,10 @@ gaspi_notify_waitsome(const gaspi_segment_id_t segment_id_local,
 
 	int ret;
 
-	Extrae_GASPI_notify_waitsome_Entry(notification_begin);
+	Extrae_GASPI_notify_waitsome_Entry();
 	ret = pgaspi_notify_waitsome(segment_id_local, notification_begin, num,
 	    first_id, timeout_ms);
-	Extrae_GASPI_notify_waitsome_Exit();
+	Extrae_GASPI_notify_waitsome_Exit(*first_id);
 
 	return ret;
 }
@@ -454,10 +454,10 @@ gaspi_notify_reset(const gaspi_segment_id_t segment_id_local,
 
 	int ret;
 
-	Extrae_GASPI_notify_reset_Entry(notification_id);
+	Extrae_GASPI_notify_reset_Entry();
 	ret = pgaspi_notify_reset(segment_id_local, notification_id,
 	    old_notification_val);
-	Extrae_GASPI_notify_reset_Exit();
+	Extrae_GASPI_notify_reset_Exit(*old_notification_val);
 
 	return ret;
 }

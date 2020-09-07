@@ -281,31 +281,30 @@ Extrae_GASPI_notify_Exit()
 }
 
 void
-Extrae_GASPI_notify_waitsome_Entry(
-    const gaspi_notification_id_t notification_begin)
+Extrae_GASPI_notify_waitsome_Entry()
 {
 	Backend_Enter_Instrumentation();
-	Probe_GASPI_notify_waitsome_Entry(notification_begin);
+	Probe_GASPI_notify_waitsome_Entry();
 }
 
 void
-Extrae_GASPI_notify_waitsome_Exit()
+Extrae_GASPI_notify_waitsome_Exit(const gaspi_notification_id_t first_id)
 {
-	Probe_GASPI_notify_waitsome_Exit();
+	Probe_GASPI_notify_waitsome_Exit(first_id);
 	Backend_Leave_Instrumentation();
 }
 
 void
-Extrae_GASPI_notify_reset_Entry(const gaspi_notification_id_t notification_id)
+Extrae_GASPI_notify_reset_Entry()
 {
 	Backend_Enter_Instrumentation();
-	Probe_GASPI_notify_reset_Entry(notification_id);
+	Probe_GASPI_notify_reset_Entry();
 }
 
 void
-Extrae_GASPI_notify_reset_Exit()
+Extrae_GASPI_notify_reset_Exit(const gaspi_notification_id_t old_notification_val)
 {
-	Probe_GASPI_notify_reset_Exit();
+	Probe_GASPI_notify_reset_Exit(old_notification_val);
 	Backend_Leave_Instrumentation();
 }
 

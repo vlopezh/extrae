@@ -82,11 +82,11 @@ void	Extrae_GASPI_notify_Entry(const gaspi_rank_t,
             const gaspi_notification_id_t, const gaspi_queue_id_t);
 void	Extrae_GASPI_notify_Exit();
 
-void	Extrae_GASPI_notify_waitsome_Entry(const gaspi_notification_id_t);
-void	Extrae_GASPI_notify_waitsome_Exit();
+void	Extrae_GASPI_notify_waitsome_Entry();
+void	Extrae_GASPI_notify_waitsome_Exit(const gaspi_notification_id_t);
 
-void	Extrae_GASPI_notify_reset_Entry(const gaspi_notification_id_t);
-void	Extrae_GASPI_notify_reset_Exit();
+void	Extrae_GASPI_notify_reset_Entry();
+void	Extrae_GASPI_notify_reset_Exit(const gaspi_notification_id_t);
 
 void	Extrae_GASPI_write_notify_Entry(const gaspi_rank_t, const gaspi_size_t,
             const gaspi_notification_id_t, const gaspi_queue_id_t);
