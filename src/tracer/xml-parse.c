@@ -384,6 +384,22 @@ static void Parse_XML_Callers (int rank, xmlDocPtr xmldoc, xmlNodePtr current_ta
                         mfprintf (stdout, PACKAGE_NAME": <%s> tag at <Callers> level will be ignored. This library does not support SHMEM.\n", TRACE_SHMEM);
 #endif
 		}
+		else if (!xmlStrcasecmp(tag->name, TRACE_GASPI))
+		{
+#if defined(GASPI_SUPPORT)
+			xmlChar *enabled = xmlGetProp_env(rank, tag, TRACE_ENABLED);
+			if (enabled != NULL && !xmlStrcasecmp(enabled, xmlYES))
+			{
+				char *callers = (char *)xmlNodeListGetString_env(rank, xmldoc, tag->xmlChildrenNode, 1);
+				if (callers != NULL)
+					Parse_Callers(rank, callers, CALLER_MPI);
+				XML_FREE(callers);
+			}
+			XML_FREE(enabled);
+#else
+			mfprintf (stdout, PACKAGE_NAME": <%s> tag at <Callers> level will be ignored. This library does not support GASPI.\n", TRACE_GASPI);
+#endif
+		}
 		else if (!xmlStrcasecmp (tag->name, TRACE_DYNAMIC_MEMORY))
 		{
 #if defined(INSTRUMENT_DYNAMIC_MEMORY)
