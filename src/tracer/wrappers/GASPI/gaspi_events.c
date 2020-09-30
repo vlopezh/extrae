@@ -355,6 +355,21 @@ Extrae_GASPI_write_list_notify_Exit()
 }
 
 void
+Extrae_GASPI_read_notify_Entry(const gaspi_rank_t rank, const gaspi_size_t size, 
+    const gaspi_notification_id_t notification_id, const gaspi_queue_id_t queue)
+{
+	Backend_Enter_Instrumentation();
+	Probe_GASPI_read_notify_Entry(rank, size, notification_id, queue);
+}
+
+void
+Extrae_GASPI_read_notify_Exit()
+{
+	Probe_GASPI_read_notify_Exit();
+	Backend_Leave_Instrumentation();
+}
+
+void
 Extrae_GASPI_read_list_Entry(const gaspi_rank_t rank, gaspi_size_t * const size,
     const gaspi_queue_id_t queue)
 {
@@ -366,6 +381,22 @@ void
 Extrae_GASPI_read_list_Exit()
 {
 	Probe_GASPI_read_list_Exit();
+	Backend_Leave_Instrumentation();
+}
+
+void
+Extrae_GASPI_read_list_notify_Entry(const gaspi_rank_t rank,
+    gaspi_size_t * const size, const gaspi_notification_id_t notification_id,
+    const gaspi_queue_id_t queue)
+{
+	Backend_Enter_Instrumentation();
+	Probe_GASPI_read_list_notify_Entry(rank, size, notification_id, queue);
+}
+
+void
+Extrae_GASPI_read_list_notify_Exit()
+{
+	Probe_GASPI_read_list_notify_Exit();
 	Backend_Leave_Instrumentation();
 }
 

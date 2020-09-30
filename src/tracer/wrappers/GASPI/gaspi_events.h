@@ -97,13 +97,22 @@ void	Extrae_GASPI_write_list_Entry(const gaspi_rank_t, gaspi_size_t * const,
 void	Extrae_GASPI_write_list_Exit();
 
 void	Extrae_GASPI_write_list_notify_Entry(const gaspi_rank_t,
-            gaspi_size_t * const, const gaspi_notification_id_t notification_id,
-            const gaspi_queue_id_t queue);
+            gaspi_size_t * const, const gaspi_notification_id_t,
+            const gaspi_queue_id_t);
 void	Extrae_GASPI_write_list_notify_Exit();
 
+void    Extrae_GASPI_read_notify_Entry(const gaspi_rank_t, const gaspi_size_t,
+            const gaspi_notification_id_t, const gaspi_queue_id_t);
+void    Extrae_GASPI_read_notify_Exit();
+
 void	Extrae_GASPI_read_list_Entry(const gaspi_rank_t, gaspi_size_t * const,
-            const gaspi_queue_id_t queue);
+            const gaspi_queue_id_t);
 void	Extrae_GASPI_read_list_Exit();
+
+void    Extrae_GASPI_read_list_notify_Entry(const gaspi_rank_t,
+            gaspi_size_t * const, const gaspi_notification_id_t,
+            const gaspi_queue_id_t);
+void    Extrae_GASPI_read_list_notify_Exit();
 
 void	Extrae_GASPI_passive_send_Entry(const gaspi_rank_t, const gaspi_size_t);
 void	Extrae_GASPI_passive_send_Exit();

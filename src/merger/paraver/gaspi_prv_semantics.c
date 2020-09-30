@@ -61,7 +61,9 @@ GASPI_Event(event_t *current_event, unsigned long long current_time, unsigned cp
 		case GASPI_WRITE_NOTIFY_EV:
 		case GASPI_WRITE_LIST_EV:
 		case GASPI_WRITE_LIST_NOTIFY_EV:
+		case GASPI_READ_NOTIFY_EV:
 		case GASPI_READ_LIST_EV:
+		case GASPI_READ_LIST_NOTIFY_EV:
 			Switch_State(STATE_1SIDED, (EvValue != EVT_END), ptask, task, thread);
 			trace_paraver_state(cpu, ptask, task, thread, current_time);
 			break;
@@ -162,7 +164,9 @@ SingleEv_Handler_t PRV_GASPI_Event_Handlers[] =
 	{GASPI_WRITE_NOTIFY_EV,         GASPI_Event},
 	{GASPI_WRITE_LIST_EV,           GASPI_Event},
 	{GASPI_WRITE_LIST_NOTIFY_EV,    GASPI_Event},
+	{GASPI_READ_NOTIFY_EV,          GASPI_Event},
 	{GASPI_READ_LIST_EV,            GASPI_Event},
+	{GASPI_READ_LIST_NOTIFY_EV,     GASPI_Event},
 	{GASPI_PASSIVE_SEND_EV,         GASPI_Event},
 	{GASPI_PASSIVE_RECEIVE_EV,      GASPI_Event},
 	{GASPI_ATOMIC_FETCH_ADD_EV,     GASPI_Event},

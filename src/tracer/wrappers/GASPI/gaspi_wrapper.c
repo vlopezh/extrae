@@ -529,6 +529,27 @@ gaspi_write_list_notify(const gaspi_number_t num,
 }
 
 gaspi_return_t
+gaspi_read_notify(const gaspi_segment_id_t segment_id_local,
+    const gaspi_offset_t offset_local, const gaspi_rank_t rank,
+    const gaspi_segment_id_t segment_id_remote,
+    const gaspi_offset_t offset_remote, const gaspi_size_t size,
+    const gaspi_notification_id_t notification_id, const gaspi_queue_id_t queue,
+    const gaspi_timeout_t timeout_ms)
+{
+	DBG
+
+	int ret;
+
+	Extrae_GASPI_read_notify_Entry(rank, size, notification_id, queue);
+	ret = pgaspi_read_notify(segment_id_local, offset_local, rank,
+	    segment_id_remote, offset_remote, size, notification_id, queue,
+	    timeout_ms);
+	Extrae_GASPI_read_notify_Exit();
+
+	return ret;
+}
+
+gaspi_return_t
 gaspi_read_list(const gaspi_number_t num,
     gaspi_segment_id_t * const segment_id_local,
     gaspi_offset_t * const offset_local, const gaspi_rank_t rank,
@@ -544,6 +565,29 @@ gaspi_read_list(const gaspi_number_t num,
 	ret = pgaspi_read_list(num, segment_id_local, offset_local, rank,
 	    segment_id_remote, offset_remote, size, queue, timeout);
 	Extrae_GASPI_read_list_Exit();
+
+	return ret;
+}
+
+gaspi_return_t
+gaspi_read_list_notify(const gaspi_number_t num,
+    gaspi_segment_id_t * const segment_id_local,
+    gaspi_offset_t * const offset_local,
+    const gaspi_rank_t rank, gaspi_segment_id_t * const segment_id_remote,
+    gaspi_offset_t * const offset_remote,
+    gaspi_size_t * const size, const gaspi_segment_id_t segment_id_notification,
+    const gaspi_notification_id_t notification_id, const gaspi_queue_id_t queue,
+    const gaspi_timeout_t timeout_ms)
+{
+	DBG
+
+	int ret;
+
+	Extrae_GASPI_read_list_notify_Entry(rank, size, notification_id, queue);
+	ret = pgaspi_read_list_notify(num, segment_id_local, offset_local, rank,
+	    segment_id_remote, offset_remote, size, segment_id_notification,
+	    notification_id, queue, timeout_ms);
+	Extrae_GASPI_read_list_notify_Exit();
 
 	return ret;
 }

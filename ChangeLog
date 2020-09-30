@@ -1,6 +1,7 @@
 
 ChangeLog
  [ + added, - removed, * changed ]
+ + 30Sep2020 Adds instrumentation support for gaspi_read_notify & gaspi_read_list_notify
  + 09Sep2020 Adds callers at GASPI instrumentation points
  * 07Sep2020 Fixes notification_id parameter for gaspi_notify_waitsome & gaspi_notify_reset
  + 06Mar2019 Adds GASPI and GASPI+OMP examples

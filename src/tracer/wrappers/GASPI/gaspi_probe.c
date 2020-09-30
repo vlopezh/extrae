@@ -550,6 +550,32 @@ Probe_GASPI_write_list_notify_Exit()
 }
 
 void
+Probe_GASPI_read_notify_Entry(const gaspi_rank_t rank, const gaspi_size_t size,
+    const gaspi_notification_id_t notification_id,
+    const gaspi_queue_id_t queue)
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(LAST_READ_TIME, GASPI_READ_NOTIFY_EV,
+		    EVT_BEGIN, Extrae_get_trace_GASPI_HWC());
+		TRACE_EVENT(LAST_READ_TIME, GASPI_RANK_EV, (UINT64)rank);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_SIZE_EV, (UINT64)size);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_NOTIFICATION_ID_EV, (UINT64)notification_id);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_QUEUE_ID_EV, (UINT64)queue);
+	}
+}
+
+void
+Probe_GASPI_read_notify_Exit()
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_READ_NOTIFY_EV, EVT_END,
+		    Extrae_get_trace_GASPI_HWC());
+	}
+}
+
+void
 Probe_GASPI_read_list_Entry(const gaspi_rank_t rank, gaspi_size_t * const size,
     const gaspi_queue_id_t queue)
 {
@@ -569,6 +595,32 @@ Probe_GASPI_read_list_Exit()
 	if (mpitrace_on && Extrae_get_trace_GASPI())
 	{
 		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_READ_LIST_EV, EVT_END,
+		    Extrae_get_trace_GASPI_HWC());
+	}
+}
+
+void
+Probe_GASPI_read_list_notify_Entry(const gaspi_rank_t rank,
+    gaspi_size_t * const size, const gaspi_notification_id_t notification_id,
+    const gaspi_queue_id_t queue)
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(LAST_READ_TIME, GASPI_READ_LIST_NOTIFY_EV,
+		    EVT_BEGIN, Extrae_get_trace_GASPI_HWC());
+		TRACE_EVENT(LAST_READ_TIME, GASPI_RANK_EV, (UINT64)rank);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_SIZE_EV, (UINT64)size);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_NOTIFICATION_ID_EV, (UINT64)notification_id);
+		TRACE_EVENT(LAST_READ_TIME, GASPI_QUEUE_ID_EV, (UINT64)queue);
+	}
+}
+
+void
+Probe_GASPI_read_list_notify_Exit()
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_READ_LIST_NOTIFY_EV, EVT_END,
 		    Extrae_get_trace_GASPI_HWC());
 	}
 }

@@ -40,7 +40,7 @@ struct GASPI_event_label_t
 	int       eventval;
 };
 
-#define MAX_GASPI_EVENT_TYPE_ENTRIES 31
+#define MAX_GASPI_EVENT_TYPE_ENTRIES 33
 
 static struct GASPI_event_label_t GASPI_event_type_label[MAX_GASPI_EVENT_TYPE_ENTRIES] =
 {
@@ -67,13 +67,15 @@ static struct GASPI_event_label_t GASPI_event_type_label[MAX_GASPI_EVENT_TYPE_EN
 	{GASPI_WRITE_LIST_EV,           FALSE, "gaspi_write_list",            21},
 	{GASPI_WRITE_LIST_NOTIFY_EV,    FALSE, "gaspi_write_list_notify",     22},
 	{GASPI_READ_LIST_EV,            FALSE, "gaspi_read_list",             23},
-	{GASPI_PASSIVE_SEND_EV,         FALSE, "gaspi_passive_send",          24},
-	{GASPI_PASSIVE_RECEIVE_EV,      FALSE, "gaspi_passive_receive",       25},
-	{GASPI_ATOMIC_FETCH_ADD_EV,     FALSE, "gaspi_atomic_fetch_add",      26},
-	{GASPI_ATOMIC_COMPARE_SWAP_EV,  FALSE, "gaspi_atomic_compare_swap",   27},
-	{GASPI_BARRIER_EV,              FALSE, "gaspi_barrier",               28},
-	{GASPI_ALLREDUCE_EV,            FALSE, "gaspi_allreduce",             29},
-	{GASPI_ALLREDUCE_USER_EV,       FALSE, "gaspi_allreduce_user",        30},
+	{GASPI_READ_NOTIFY_EV,          FALSE, "gaspi_read_notify",           24},
+	{GASPI_READ_LIST_NOTIFY_EV,     FALSE, "gaspi_read_list_notify",      25},
+	{GASPI_PASSIVE_SEND_EV,         FALSE, "gaspi_passive_send",          26},
+	{GASPI_PASSIVE_RECEIVE_EV,      FALSE, "gaspi_passive_receive",       27},
+	{GASPI_ATOMIC_FETCH_ADD_EV,     FALSE, "gaspi_atomic_fetch_add",      28},
+	{GASPI_ATOMIC_COMPARE_SWAP_EV,  FALSE, "gaspi_atomic_compare_swap",   29},
+	{GASPI_BARRIER_EV,              FALSE, "gaspi_barrier",               30},
+	{GASPI_ALLREDUCE_EV,            FALSE, "gaspi_allreduce",             31},
+	{GASPI_ALLREDUCE_USER_EV,       FALSE, "gaspi_allreduce_user",        32},
 	{GASPI_TERM_EV,                 FALSE, "gaspi_proc_term",            100}
 };
 
