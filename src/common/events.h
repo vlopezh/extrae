@@ -688,6 +688,9 @@ enum {
 #define GASPI_ALLREDUCE_EV           69000031
 #define GASPI_ALLREDUCE_USER_EV      69000032
 
+#define GASPI_QUEUE_CREATE_EV        69000033
+#define GASPI_QUEUE_DELETE_EV        69000034
+
 #define GASPI_TERM_EV                69000100
 
 /* GASPI-2 parameters events*/

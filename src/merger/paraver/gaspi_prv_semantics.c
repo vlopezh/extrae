@@ -90,6 +90,8 @@ GASPI_Event(event_t *current_event, unsigned long long current_time, unsigned cp
 		case GASPI_SEGMENT_BIND_EV:
 		case GASPI_SEGMENT_USE_EV:
 		case GASPI_SEGMENT_DELETE_EV:
+		case GASPI_QUEUE_CREATE_EV:
+		case GASPI_QUEUE_DELETE_EV:
 			Switch_State(STATE_ALLOCMEM, (EvValue != EVT_END), ptask, task, thread);
 			trace_paraver_state(cpu, ptask, task, thread, current_time);
 			break;
@@ -174,5 +176,7 @@ SingleEv_Handler_t PRV_GASPI_Event_Handlers[] =
 	{GASPI_BARRIER_EV,              GASPI_Event},
 	{GASPI_ALLREDUCE_EV,            GASPI_Event},
 	{GASPI_ALLREDUCE_USER_EV,       GASPI_Event},
+	{GASPI_QUEUE_CREATE_EV,         GASPI_Event},
+	{GASPI_QUEUE_DELETE_EV,         GASPI_Event},
 	{NULL_EV,                          NULL}
 };

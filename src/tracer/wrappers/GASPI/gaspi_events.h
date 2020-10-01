@@ -117,9 +117,8 @@ void    Extrae_GASPI_read_list_notify_Exit();
 void	Extrae_GASPI_passive_send_Entry(const gaspi_rank_t, const gaspi_size_t);
 void	Extrae_GASPI_passive_send_Exit();
 
-void	Extrae_GASPI_passive_receive_Entry(gaspi_rank_t * const,
-            const gaspi_size_t);
-void	Extrae_GASPI_passive_receive_Exit();
+void	Extrae_GASPI_passive_receive_Entry(const gaspi_size_t);
+void	Extrae_GASPI_passive_receive_Exit(const gaspi_rank_t);
 
 void	Extrae_GASPI_atomic_fetch_add_Entry(const gaspi_rank_t);
 void	Extrae_GASPI_atomic_fetch_add_Exit();
@@ -135,3 +134,9 @@ void	Extrae_GASPI_allreduce_Exit();
 
 void	Extrae_GASPI_allreduce_user_Entry();
 void	Extrae_GASPI_allreduce_user_Exit();
+
+void    Extrae_GASPI_queue_create_Entry();
+void    Extrae_GASPI_queue_create_Exit(const gaspi_queue_id_t);
+
+void    Extrae_GASPI_queue_delete_Entry(const gaspi_queue_id_t);
+void    Extrae_GASPI_queue_delete_Exit();

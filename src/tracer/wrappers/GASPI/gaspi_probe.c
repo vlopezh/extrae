@@ -648,25 +648,24 @@ Probe_GASPI_passive_send_Exit()
 }
 
 void
-Probe_GASPI_passive_receive_Entry(gaspi_rank_t * const rem_rank,
-    const gaspi_size_t size)
+Probe_GASPI_passive_receive_Entry(const gaspi_size_t size)
 {
 	if (mpitrace_on && Extrae_get_trace_GASPI())
 	{
 		TRACE_GASPI_EVENTANDCOUNTERS(LAST_READ_TIME, GASPI_PASSIVE_RECEIVE_EV,
 		    EVT_BEGIN, Extrae_get_trace_GASPI_HWC());
-		TRACE_EVENT(LAST_READ_TIME, GASPI_RANK_EV, (UINT64)rem_rank);
 		TRACE_EVENT(LAST_READ_TIME, GASPI_SIZE_EV, (UINT64)size);
 	}
 }
 
 void
-Probe_GASPI_passive_receive_Exit()
+Probe_GASPI_passive_receive_Exit(const gaspi_rank_t rem_rank)
 {
 	if (mpitrace_on && Extrae_get_trace_GASPI())
 	{
 		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_PASSIVE_RECEIVE_EV, EVT_END,
 		    Extrae_get_trace_GASPI_HWC());
+		TRACE_EVENT(LAST_READ_TIME, GASPI_RANK_EV, (UINT64)rem_rank);
 	}
 }
 
@@ -766,6 +765,48 @@ Probe_GASPI_allreduce_user_Exit()
 	if (mpitrace_on && Extrae_get_trace_GASPI())
 	{
 		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_ALLREDUCE_USER_EV, EVT_END,
+		    Extrae_get_trace_GASPI_HWC());
+	}
+}
+
+void
+Probe_GASPI_queue_create_Entry()
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_QUEUE_CREATE_EV, EVT_BEGIN,
+		    Extrae_get_trace_GASPI_HWC());
+	}
+}
+
+void
+Probe_GASPI_queue_create_Exit(const gaspi_queue_id_t queue)
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_QUEUE_CREATE_EV, EVT_END,
+		    Extrae_get_trace_GASPI_HWC());
+		TRACE_EVENT(LAST_READ_TIME, GASPI_QUEUE_ID_EV, (UINT64)queue);
+	}
+}
+
+void
+Probe_GASPI_queue_delete_Entry(const gaspi_queue_id_t queue)
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_QUEUE_DELETE_EV, EVT_BEGIN,
+		    Extrae_get_trace_GASPI_HWC());
+		TRACE_EVENT(LAST_READ_TIME, GASPI_QUEUE_ID_EV, (UINT64)queue);
+	}
+}
+
+void
+Probe_GASPI_queue_delete_Exit()
+{
+	if (mpitrace_on && Extrae_get_trace_GASPI())
+	{
+		TRACE_GASPI_EVENTANDCOUNTERS(TIME, GASPI_QUEUE_DELETE_EV, EVT_END,
 		    Extrae_get_trace_GASPI_HWC());
 	}
 }

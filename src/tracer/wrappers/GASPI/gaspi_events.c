@@ -415,17 +415,16 @@ Extrae_GASPI_passive_send_Exit()
 }
 
 void
-Extrae_GASPI_passive_receive_Entry(gaspi_rank_t * const rem_rank,
-    const gaspi_size_t size)
+Extrae_GASPI_passive_receive_Entry(const gaspi_size_t size)
 {
 	Backend_Enter_Instrumentation();
-	Probe_GASPI_passive_receive_Entry(rem_rank, size);
+	Probe_GASPI_passive_receive_Entry(size);
 }
 
 void
-Extrae_GASPI_passive_receive_Exit()
+Extrae_GASPI_passive_receive_Exit(const gaspi_rank_t rem_rank)
 {
-	Probe_GASPI_passive_receive_Exit();
+	Probe_GASPI_passive_receive_Exit(rem_rank);
 	Backend_Leave_Instrumentation();
 }
 
@@ -496,5 +495,32 @@ void
 Extrae_GASPI_allreduce_user_Exit()
 {
 	Probe_GASPI_allreduce_user_Exit();
+	Backend_Leave_Instrumentation();
+}
+
+void
+Extrae_GASPI_queue_create_Entry()
+{
+	Backend_Enter_Instrumentation();
+	Probe_GASPI_queue_create_Entry();
+}
+void
+Extrae_GASPI_queue_create_Exit(const gaspi_queue_id_t queue)
+{
+	Probe_GASPI_queue_create_Exit(queue);
+	Backend_Leave_Instrumentation();
+}
+
+void
+Extrae_GASPI_queue_delete_Entry(const gaspi_queue_id_t queue)
+{
+	Backend_Enter_Instrumentation();
+	Probe_GASPI_queue_delete_Entry(queue);
+}
+
+void
+Extrae_GASPI_queue_delete_Exit()
+{
+	Probe_GASPI_queue_delete_Exit();
 	Backend_Leave_Instrumentation();
 }

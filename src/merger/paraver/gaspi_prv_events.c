@@ -40,7 +40,7 @@ struct GASPI_event_label_t
 	int       eventval;
 };
 
-#define MAX_GASPI_EVENT_TYPE_ENTRIES 33
+#define MAX_GASPI_EVENT_TYPE_ENTRIES 35
 
 static struct GASPI_event_label_t GASPI_event_type_label[MAX_GASPI_EVENT_TYPE_ENTRIES] =
 {
@@ -76,6 +76,8 @@ static struct GASPI_event_label_t GASPI_event_type_label[MAX_GASPI_EVENT_TYPE_EN
 	{GASPI_BARRIER_EV,              FALSE, "gaspi_barrier",               30},
 	{GASPI_ALLREDUCE_EV,            FALSE, "gaspi_allreduce",             31},
 	{GASPI_ALLREDUCE_USER_EV,       FALSE, "gaspi_allreduce_user",        32},
+	{GASPI_QUEUE_CREATE_EV,         FALSE, "gaspi_queue_create",          33},
+	{GASPI_QUEUE_DELETE_EV,         FALSE, "gaspi_queue_delete",          34},
 	{GASPI_TERM_EV,                 FALSE, "gaspi_proc_term",            100}
 };
 

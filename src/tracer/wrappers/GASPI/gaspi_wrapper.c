@@ -618,10 +618,10 @@ gaspi_passive_receive(const gaspi_segment_id_t segment_id_local,
 
 	int ret;
 
-	Extrae_GASPI_passive_receive_Entry(rem_rank, size);
+	Extrae_GASPI_passive_receive_Entry(size);
 	ret = pgaspi_passive_receive(segment_id_local, offset_local, rem_rank, size,
 	    timeout_ms);
-	Extrae_GASPI_passive_receive_Exit();
+	Extrae_GASPI_passive_receive_Exit(*rem_rank);
 
 	return ret;
 }
@@ -709,6 +709,35 @@ gaspi_allreduce_user(gaspi_pointer_t const buffer_send,
 	ret = pgaspi_allreduce_user(buffer_send, buffer_receive, num, element_size,
 	    operation, reduce_state, group, timeout_ms);
 	Extrae_GASPI_allreduce_user_Exit();
+
+	return ret;
+}
+
+gaspi_return_t
+gaspi_queue_create(gaspi_queue_id_t * const queue,
+    const gaspi_timeout_t timeout_ms)
+{
+	DBG
+
+	int ret;
+
+	Extrae_GASPI_queue_create_Entry();
+	ret = pgaspi_queue_create(queue, timeout_ms);
+	Extrae_GASPI_queue_create_Exit(*queue);
+
+	return ret;
+}
+
+gaspi_return_t
+gaspi_queue_delete(const gaspi_queue_id_t queue)
+{
+	DBG
+
+	int ret;
+
+	Extrae_GASPI_queue_delete_Entry(queue);
+	ret = pgaspi_queue_delete(queue);
+	Extrae_GASPI_queue_delete_Exit();
 
 	return ret;
 }
