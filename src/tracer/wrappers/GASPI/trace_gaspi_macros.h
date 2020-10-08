@@ -30,9 +30,24 @@
 {                                                                              \
 	if (evtvalue == EVT_BEGIN)                                                 \
 	{                                                                          \
-		Extrae_trace_callers(evttime, FOUR_CALLS_AGO, CALLER_MPI);             \
+		Extrae_trace_callers(evttime, FIVE_CALLS_AGO, CALLER_MPI);             \
 	}                                                                          \
 }
+
+#define TRACE_GASPI_PARAM(evttime,evttype,evtvalue)                            \
+{                                                                              \
+	event_t evt;                                                               \
+	int thread_id = THREADID;                                                  \
+	if (tracejant && TracingBitmap[TASKID] )                                   \
+	{                                                                          \
+		evt.time = evttime;                                                    \
+		evt.event = evttype;                                                   \
+		evt.value = evtvalue + 1;                                              \
+		HARDWARE_COUNTERS_READ (thread_id, evt, FALSE);                        \
+		BUFFER_INSERT(thread_id, TRACING_BUFFER(thread_id), evt);              \
+	}                                                                          \
+}
+
 
 #define TRACE_GASPI_EVENT(evttime,evttype,evtvalue,hwc_filter)                 \
 {                                                                              \

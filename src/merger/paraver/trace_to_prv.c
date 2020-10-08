@@ -480,7 +480,7 @@ int Paraver_ProcessTraceFiles (unsigned long nfiles,
 					else if (JAVA_TYPE == Type)
 						Enable_Java_Operation (EvType);
 					else if (GASPI_TYPE == Type)
-						Enable_GASPI_Operation(EvType);
+						Enable_GASPI_Operation(EvType, Get_EvValue(current_event));
 				}
 				else	
 				{
@@ -578,8 +578,8 @@ int Paraver_ProcessTraceFiles (unsigned long nfiles,
 #if defined(PARALLEL_MERGE)
 	if (numtasks > 1)
 	{
-		int res;
-		unsigned int temp;
+		int res, i;
+		unsigned int temp, max_param;
 		UINT64 temp2;
 
 		res = MPI_Allreduce (&error, &temp, 1, MPI_UNSIGNED, MPI_LOR, MPI_COMM_WORLD);
@@ -591,6 +591,13 @@ int Paraver_ProcessTraceFiles (unsigned long nfiles,
 			res = MPI_Allreduce (&current_time, &temp2, 1, MPI_LONG_LONG, MPI_MAX, MPI_COMM_WORLD);
 			MPI_CHECK(res, MPI_Allreduce, "Failed to share end time!");
 			current_time = temp2;
+
+			for (i = 0; i<MAX_GASPI_PARAM_TYPE_ENTRIES; i++)
+			{
+				res = MPI_Allreduce(&GASPI_param_type_label[i].present, &max_param, 1, MPI_UNSIGNED, MPI_MAX, MPI_COMM_WORLD);
+				MPI_CHECK(res, MPI_Allreduce, "Failed to share GASPI parameters!");
+				GASPI_param_type_label[i].present = max_param;
+			}
 		}
 	}
 #endif

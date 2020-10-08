@@ -25,7 +25,21 @@
 
 #include <config.h>
 
-void	Enable_GASPI_Operation(unsigned);
+struct GASPI_event_label_t
+{
+	unsigned  eventtype;
+	unsigned  present;
+	char     *description;
+	int       eventval;
+};
+
+#define MAX_GASPI_EVENT_TYPE_ENTRIES 35
+extern struct GASPI_event_label_t GASPI_event_type_label[MAX_GASPI_EVENT_TYPE_ENTRIES];
+
+#define MAX_GASPI_PARAM_TYPE_ENTRIES 3
+extern struct GASPI_event_label_t GASPI_param_type_label[MAX_GASPI_PARAM_TYPE_ENTRIES];
+
+void	Enable_GASPI_Operation(unsigned, unsigned);
 int		Translate_GASPI_Operation(unsigned, unsigned long long, unsigned *,
 		    unsigned long long *);
 void	WriteEnabled_GASPI_Operations(FILE *);

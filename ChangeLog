@@ -1,6 +1,7 @@
 
 ChangeLog
  [ + added, - removed, * changed ]
+ * 09Oct2020 GASPI parameters now start at 1 and PCF has labels to their actual values
  + 01Oct2020 Adds instrumentation support for gaspi_queue_create/delete
  + 30Sep2020 Adds instrumentation support for gaspi_read_notify & gaspi_read_list_notify
  + 09Sep2020 Adds callers at GASPI instrumentation points
